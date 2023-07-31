@@ -2,45 +2,56 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order Confirmation</title>
-</head>
-<body>
+  </head>
+  <body>
     <!--header-->
     <header>
-        <!--navigation bar-->
-        <div class="nav container">
-            <a href="index.html" class="logo">E-commerce</a>
-            <i class="bx bx-x" id="close-order"></i>
-        </div>
+      <!--navigation bar-->
+      <div class="nav container">
+        <a href="index.html" class="logo">E-commerce</a>
+        <i class="bx bx-x" id="close-order"></i>
+      </div>
     </header>
 
     <!--Order Confirmation-->
     <section class="order-confirmation container">
-        <h2 class="section-title">Order Confirmation</h2>
+      <h2 class="section-title">Order Confirmation</h2>
 
-        <!-- Title bar -->
-        <div class="order-title-bar">
-            <div class="title">Image</div>
-            <div class="title">Title</div>
-            <div class="title">Quantity</div>
-            <div class="title">Price</div>
-        </div>
+      <button id="show-stream-button">Show Live Stream</button>
 
-        <!--content-->
-        <div class="order-content">
-            <!-- This is where the dynamic data will be added by order.js -->
-        </div>
+      <!-- Title bar -->
+      <div class="order-title-bar">
+        <div class="title">Image</div>
+        <div class="title">Title</div>
+        <div class="title">Quantity</div>
+        <div class="title">Price</div>
+      </div>
 
-        <!-- Total Price Box -->
-        <div class="total-price-box">
-            <div class="title">Total Price</div>
-            <div class="total-price">$0</div>
-        </div>
+      <!--content-->
+      <div class="order-content">
+        <!-- This is where the dynamic data will be added by order.js -->
+      </div>
+
+      <!-- Total Price Box -->
+      <div class="total-price-box">
+        <div class="title">Total Price</div>
+        <div class="total-price">$0</div>
+      </div>
+    </section>
+
+    <section id="video-stream">
+      <h2>video</h2>
+
+
     </section>
 
     <!-- Add the CSS file for order_confirm.html styling -->
@@ -48,5 +59,5 @@
 
     <!-- Include the modified order.js -->
     <script src="js/order.js"></script>
-</body>
+  </body>
 </html>

@@ -243,6 +243,10 @@ section {
     background-color: var(--main-color);
 }
 
+.add-cart.selected{
+    background-color: green;
+}
+
 /* Order Confirmation */
 
 .order-confirmation {

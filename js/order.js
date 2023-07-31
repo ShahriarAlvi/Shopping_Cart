@@ -56,6 +56,19 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.log("LocalStorage is not available.");
   }
+
+  var scrollButton = document.getElementById('show-stream-button');
+
+  // Add a click event listener to the button
+  scrollButton.addEventListener('click', function() {
+    // Get the target section element
+    var targetSection = document.getElementById('video-stream');
+
+    // Scroll to the target section using smooth behavior
+    targetSection.scrollIntoView({ behavior: 'smooth' });
+  });
+
+
 });
 
 // Add a click event listener to the cross button
