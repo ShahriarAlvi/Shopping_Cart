@@ -58,8 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /*----------------------------------------------------------*/
 
-  // ... (existing code)
-
   // Buy button - Modify the data sending mechanism for the order_confirmation.html page
   function buyButtonClicked() {
     var cartContent = document.getElementsByClassName("cart-content")[0];
