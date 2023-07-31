@@ -1,0 +1,37 @@
+/* /css/order.css */
+
+/* Add this CSS to style the order-content items */
+.order-content {
+    display: block;
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+    /* gap: 1rem; */
+  }
+  
+  .order-box {
+    display: grid;
+    grid-template-columns: 20% 40% 30% 10%;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    text-align: left;
+  }
+  
+  .order-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  
+  .order-title {
+    display: inline-block;
+    font-weight: 600;
+    margin: 0.5rem 0;
+  }
+  
+  .order-quantity,
+  .order-price {
+    display: inline-block;
+    margin: 0.5rem 0;
+    /* margin-bottom: 0.5rem; */
+  }
+  

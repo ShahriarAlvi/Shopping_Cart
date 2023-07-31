@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100&display=swap');
+/* /css/style.css */
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100&display=swap");
 
-*{
-    font-family: 'Poppins', sans-serif;
+* {
+    font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
     scroll-padding-top: 2rem;
@@ -12,22 +13,21 @@
     text-decoration: none;
 }
 
-:root{
+:root {
     --main-color: #f82c2c;
     --text-color: #090606;
     --bg-color: #fff;
 }
 
-img{
+img {
     width: 100%;
 }
 
-body{
-    color: var(--text-color)
-
+body {
+    color: var(--text-color);
 }
 
-header{
+header {
     position: fixed;
     top: 0;
     left: 0;
@@ -37,11 +37,11 @@ header{
     z-index: 50;
 }
 
-section{
+section {
     padding: 5rem 0 3rem;
 }
 
-.container{
+.container {
     max-width: 1080px;
     margin: auto;
     width: 100%;
@@ -60,14 +60,14 @@ section{
     font-weight: 400;
 }
 
-#cart-icon{
+#cart-icon {
     font-size: 2rem;
     cursor: pointer;
 }
 
 /* Cart */
 
-.cart{
+.cart {
     position: fixed;
     top: 0;
     right: -100%;
@@ -80,18 +80,18 @@ section{
     overflow-y: scroll;
 }
 
-.cart.active{
+.cart.active {
     right: 0;
 }
 
-.cart-title{
+.cart-title {
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
     margin-top: 2rem;
 }
 
-.cart-box{
+.cart-box {
     display: grid;
     grid-template-columns: 32% 50% 18%;
     align-items: center;
@@ -99,29 +99,28 @@ section{
     margin-top: 1rem;
 }
 
-.cart-img{
+.cart-img {
     width: 100px;
     height: 100px;
     object-fit: contain;
     padding: 10px;
-
 }
 
-.detail-box{
+.detail-box {
     display: grid;
     row-gap: 0.5rem;
 }
 
-.cart-product-title{
+.cart-product-title {
     font-size: 1rem;
     text-transform: uppercase;
 }
 
-.cart-price{
+.cart-price {
     font-weight: 600;
 }
 
-.cart-quantity{
+.cart-quantity {
     border: 1px solid var(--text-color);
     outline-color: var(--main-color);
     width: 5rem;
@@ -130,35 +129,35 @@ section{
     font-size: 1rem;
 }
 
-.cart-remove{
+.cart-remove {
     font-size: 25px;
     color: var(--main-color);
     cursor: pointer;
 }
 
-.cart-remove:hover{
+.cart-remove:hover {
     position: relative;
     left: 1px;
     font-size: 28px;
     color: var(--text-color);
 }
 
-.total{
+.total {
     display: flex;
     justify-content: flex-end;
     margin-top: 1.5rem;
     border-top: 1px solid var(--text-color);
 }
 
-.total-title{
+.total-title {
     font-weight: 600;
 }
 
-.total-price{
+.total-price {
     margin-left: 1rem;
 }
 
-.btn-buy{
+.btn-buy {
     display: flex;
     margin: 1.5rem auto 0 auto;
     padding: 8px 15px;
@@ -170,11 +169,11 @@ section{
     cursor: pointer;
 }
 
-.btn-buy:hover{
+.btn-buy:hover {
     background-color: var(--text-color);
 }
 
-#close-cart{
+#close-cart {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -182,31 +181,26 @@ section{
     color: var(--text-color);
     cursor: pointer;
 }
-#close-cart:hover{
+
+#close-cart:hover {
     color: var(--main-color);
     font-size: 2.2rem;
 }
 
-
-
-
-
-
-.section-title{
+.section-title {
     padding: 30px;
     font-size: 2rem;
     font-weight: 600;
     text-align: center;
 }
 
-.shop{
+.shop {
     /* margin-top: 2rem; */
     margin-bottom: 1rem;
-
 }
 
 /* shop content */
-.shop-content{
+.shop-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, auto));
     gap: 1.5rem;
@@ -215,7 +209,8 @@ section{
 .product-box {
     position: relative;
 }
-.product-box:hover{
+
+.product-box:hover {
     padding: 10px;
     border: 1px solid var(--text-color);
     transition: 0.5s;
@@ -227,14 +222,14 @@ section{
     margin-bottom: 0.5rem;
 }
 
-.product-title{
+.product-title {
     font-size: 1.1rem;
     font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
 }
 
-.add-cart{
+.add-cart {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -244,91 +239,134 @@ section{
     cursor: pointer;
 }
 
-.add-cart:hover{
-background-color: var(--main-color);
+.add-cart:hover {
+    background-color: var(--main-color);
+}
+
+/* Order Confirmation */
+
+.order-confirmation {
+    /* margin-top: 80px; */
+    padding: 5rem 0 3rem;
+}
+
+.order-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+#order-list li {
+    /* Add your styles for each order item here */
+    border: 1px solid var(--text-color);
+    margin: 1rem;
+    padding: 1rem;
+    display: inline-block;
+    justify-content:space-between;
+    grid-template-columns: 100px 1rem;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+}
+
+#order-list li:hover {
+    padding: 10px;
+    border: 1px solid var(--text-color);
+    transition: 0.5s;
+}
+
+.order-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.order-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.order-quantity {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--main-color);
+    margin-bottom: 0.5rem;
+}
+
+.order-total-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--main-color);
+}
+
+/* Add this style for the cross button in the navigation bar */
+#close-order {
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+  }
+  
+  #close-order:hover {
+    color: var(--main-color);
+    font-size: 2.2rem;
+  }
+  
+
+@media (max-width: 1080px) {
+    .order-confirmation {
+        padding: 3rem 0 2rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .order-img {
+        height: 80px;
+        width: 80px;
+    }
 }
 
 @media (max-width: 1080px) {
-    .nav{
+    .nav {
         padding: 15px;
-
     }
 
-    .container{
+    .container {
         margin: 0 auto;
         width: 90%;
-    }  
-    
-    section{
+    }
+
+    section {
         padding: 3rem 0 2rem;
     }
 
-    .shop{
-        margin-bottom: 1rem !important ;
+    .shop {
+        margin-bottom: 1rem !important;
     }
 }
 
-@media (max-width: 400px){
-    .nav{
+@media (max-width: 400px) {
+    .nav {
         padding: 11px;
     }
-    .logo{
+
+    .logo {
         font-size: 1rem;
     }
 
-    .cart{
+    .cart {
         width: 280px;
         padding: 10px;
     }
 
-    .cart-img{
+    .cart-img {
         height: 80px;
         width: 80px;
     }
-    .cart-box{
+
+    .cart-box {
         gap: 0.5rem;
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

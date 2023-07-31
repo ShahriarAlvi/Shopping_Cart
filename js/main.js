@@ -1,3 +1,7 @@
+// /js/main.js
+
+document.addEventListener("DOMContentLoaded", function () {
+
 // Cart
 
 let cartIcon = document.querySelector("#cart-icon");
@@ -53,14 +57,48 @@ function ready() {
     .addEventListener("click", buyButtonClicked);
 }
 
-// Buy button - this is where I need to modify the data sending mechanism
+/*----------------------------------------------------------*/
+
+
+
+
+// ... (existing code)
+
+// Buy button - Modify the data sending mechanism for the order_confirmation.html page
 function buyButtonClicked() {
-  alert("Your order has been placed");
   var cartContent = document.getElementsByClassName("cart-content")[0];
-  while (cartContent.hasChildNodes()) {
-    cartContent.removeChild(cartContent.firstChild);
+  var cartBoxes = cartContent.getElementsByClassName("cart-box");
+
+  // Create an array to store the purchased items
+  var purchasedItems = [];
+
+  for (var i = 0; i < cartBoxes.length; i++) {
+    var cartBox = cartBoxes[i];
+    var title = cartBox.getElementsByClassName("cart-product-title")[0].innerText;
+    var quantity = parseInt(cartBox.getElementsByClassName("cart-quantity")[0].value);
+    var price = cartBox.getElementsByClassName("cart-price")[0].innerText;
+    var productImg = cartBox.getElementsByClassName("cart-img")[0].src;
+
+
+    // Create an object to store the purchased item's data
+    var purchasedItem = {
+      title: title,
+      quantity: quantity,
+      price: price,
+      productImg: productImg
+    };
+
+    // Push the purchased item data into the array
+    purchasedItems.push(purchasedItem);
   }
-  updateTotal();
+
+  // Store the purchased items data in local storage for use in the order confirmation page
+  localStorage.setItem("purchasedItems", JSON.stringify(purchasedItems));
+
+  console.log(localStorage);
+
+  // Redirect to the order_confirmation.html page
+  window.location.href = "order_confirmation.html";
 }
 
 // Remove items from cart
@@ -146,3 +184,5 @@ function updateTotal() {
 
   document.getElementsByClassName("total-price")[0].innerText = "$" + total;
 }
+
+});
