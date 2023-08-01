@@ -1,0 +1,197 @@
+<!-- /order_confirmation.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation</title>
+  </head>
+  <body>
+    <!--header-->
+    <header>
+      <!--navigation bar-->
+      <div class="nav container">
+        <a href="index.html" class="logo">E-commerce</a>
+        <i class="bx bx-x" id="close-order"></i>
+      </div>
+    </header>
+
+    <!--Order Confirmation-->
+    <section class="order-confirmation container">
+      <h2 class="section-title">Order Confirmation</h2>
+
+      <button id="show-stream-button">Show Live Stream</button>
+
+      <!-- Title bar -->
+      <div class="order-title-bar">
+        <div class="title">Image</div>
+        <div class="title">Title</div>
+        <div class="title">Quantity</div>
+        <div class="title">Price</div>
+      </div>
+
+      <!--content-->
+      <div class="order-content">
+        <!-- This is where the dynamic data will be added by order.js -->
+      </div>
+
+      <!-- Total Price Box -->
+      <div class="total-price-box">
+        <div class="title">Total Price</div>
+        <div class="total-price">$0</div>
+      </div>
+    </section>
+
+    <section id="video-stream">
+      <h2>video</h2>
+    </section>
+
+    <!-- Include the modified order.js -->
+    <script>
+      // Create a mapping of product titles to IDs
+      const productTitleToIdMap = {
+        "ITEM 1": 1,
+        "ITEM 2": 2,
+        "ITEM 3": 3,
+        "ITEM 4": 4,
+        "ITEM 5": 5,
+        "ITEM 6": 6,
+        "ITEM 7": 7,
+        "ITEM 8": 8,
+      };
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        // Check if localStorage is available in the browser
+        if (typeof localStorage !== "undefined") {
+          /* ------------- create an array of items to send to the ESP32 server -------- */
+    
+          // Retrieve the purchasedItems data from local storage
+          var purchasedItems = JSON.parse(localStorage.getItem("purchasedItems"));
+    
+          // Create an array to store the IDs and quantities of purchased items
+          var purchasedItemData = [];
+    
+          // Check if purchasedItems data is available
+          if (purchasedItems && purchasedItems.length > 0) {
+            // Loop through purchasedItems and add IDs and quantities to the array
+            purchasedItems.forEach(function (item) {
+              var productId = productTitleToIdMap[item.title];
+    
+              if (productId) {
+                purchasedItemData.push({
+                  id: productId,
+                  quantity: item.quantity,
+                });
+              }
+            });
+    
+            // Log the array of purchasedItemData (for testing purposes)
+            console.log("Array of purchasedItemData:", purchasedItemData);
+    
+            /* --------------------- Order Confirmation -------------- */
+    
+            // Display the purchasedItems data on the order_confirmation.html page
+            var orderContent = document.querySelector(".order-content");
+            var totalPriceBox = document.querySelector(".total-price");
+            var totalAmount = 0;
+    
+            purchasedItems.forEach(function (item) {
+              var orderBox = document.createElement("div");
+              orderBox.classList.add("order-box");
+    
+              var orderImg = document.createElement("img");
+              orderImg.src = item.productImg;
+              orderImg.alt = item.title;
+              orderImg.classList.add("order-img");
+              orderBox.appendChild(orderImg);
+    
+              var orderTitle = document.createElement("div");
+              orderTitle.textContent = item.title;
+              orderTitle.classList.add("order-title");
+              orderBox.appendChild(orderTitle);
+    
+              var orderQuantity = document.createElement("div");
+              orderQuantity.textContent = item.quantity;
+              orderQuantity.classList.add("order-quantity");
+              orderBox.appendChild(orderQuantity);
+    
+              var orderPrice = document.createElement("div");
+              orderPrice.textContent = item.price;
+              orderPrice.classList.add("order-price");
+              orderBox.appendChild(orderPrice);
+    
+              orderContent.appendChild(orderBox);
+    
+              // Calculate the total price
+              totalAmount +=
+                parseFloat(item.price.replace("$", "")) * item.quantity;
+            });
+    
+            // Update the total price in the Total Price Box
+            totalPriceBox.textContent = "$" + totalAmount.toFixed(2);
+    
+            /* -------------- Sending purchasedItemData to ESP32 server ------------ */
+    
+            // ESP32 server IP address and endpoint
+            const esp32ServerUrl = "http://esp32-server-ip/api/save-purchase";
+    
+            // Send the purchasedItemData array to the ESP32 server
+            fetch(esp32ServerUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(purchasedItemData),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                // Handle response from the ESP32 server if needed
+                console.log("Response from ESP32 server:", data);
+              })
+              .catch((error) => {
+                console.error("Error sending data to ESP32 server:", error);
+              });
+          } else {
+            // Create a message for no items in the cart
+            var orderContent = document.querySelector(".order-content");
+            var noItemsMessage = document.createElement("div");
+            noItemsMessage.textContent = "No items in the cart.";
+            orderContent.appendChild(noItemsMessage);
+          }
+    
+          /* ------------------ end of if (local storage != undefined) --------- */
+        } else {
+          console.log("LocalStorage is not available.");
+        }
+    
+        /* ---------------------------------------------------------------------------- */
+    
+        var scrollButton = document.getElementById("show-stream-button");
+    
+        // Add a click event listener to the button
+        scrollButton.addEventListener("click", function () {
+          // Get the target section element
+          var targetSection = document.getElementById("video-stream");
+    
+          // Scroll to the target section using smooth behavior
+          targetSection.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    
+      /* -------------------   DOMContentLoaded addEventListener finished ------------------------------ */
+    
+      // Add a click event listener to the cross button
+      document.getElementById("close-order").addEventListener("click", function () {
+        // Redirect to index.html
+        window.location.href = "index.html";
+      });
+    </script>
+    
+  </body>
+</html>
